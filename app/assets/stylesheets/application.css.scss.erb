@@ -1,0 +1,40 @@
+@import "bootstrap";
+
+.user-info {
+  margin-top: 9px;
+}
+
+.nav {
+  margin-top: 5px;
+}
+
+body {
+  background-image: url( <%= asset_path("clouds.gif") %> ),url(<%= asset_path("mountains.gif") %>),url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAJtCAIAAAB43o3WAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyBpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBXaW5kb3dzIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjkwRUIzNkRCMzZDMzExRTFBOTFGRTQwODREOTJGMjFGIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOjkwRUIzNkRDMzZDMzExRTFBOTFGRTQwODREOTJGMjFGIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6OTBFQjM2RDkzNkMzMTFFMUE5MUZFNDA4NEQ5MkYyMUYiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6OTBFQjM2REEzNkMzMTFFMUE5MUZFNDA4NEQ5MkYyMUYiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz6KvwHoAAAB60lEQVR42uxWS3LFIAyzuP8xe4CuukTFP7BJ3gE602kzCWDLkg34ydf3z4DIIGSAMmR9r88hmEPmGuufziMeQhfXPwcl7HNdccw/bf2N5SOi9st3jUmuN9aYFnfoOo4vlx/WOhJ/2U1RUmpKm8fCIhfHsDOf4fzUZoE5HlyPc53mp9yV8xSPIxFHMr47mI/yFLpP1ae4M7WqGWkaTe/GC2zkmDZnHOTgjbTVGDzfMA6wWJtjqRNLLBQNDjmPnoiX2hWfl0+r2Y4F14XUwpYr5+l8GHy35qLbMWDY3PY35//nbzx8zvHdlm+2HzERexYbD3E+qt09p+PZuPAFN7/Z9+dDB/c5mXHGufEKv3LvseWE/dwLO3/evPjCs+AwOVTNXcfOBz/MB+fGs+UIH2rLVgvXcvvlfRr3b9zDNq/3O6XdczXPiLi8clo5ON6px9EuLa5wFk5uz+A2qz1PPDz2KB91Sn8UO+sX9FxoX2PB95h+b+rcLPvJY/PqNXkXF82B7zGy3wR29iqWXhS4z3ORew973b5ZcggfN03l7t+1J0ses692rHoetgZ0rvWdtX3ozpru/GQ+ozcmV16aN5++jxA9reUmfpe0+Bc/id8TpFz97JzNowWXFtn1Q7sPa/4ujDLG1Ycbd8ivAAMAo7wtiIhWMPAAAAAASUVORK5CYII=);
+  background-repeat: no-repeat,no-repeat,repeat-x;
+  background-position: center top, center bottom, 0 0;
+  background-color: #ede4ce;
+  color: #000;
+  text-align: left;
+  width: 100%;
+}
+html,body {
+  min-height: 100%;
+}
+
+.vote-arrows {
+  padding-right: 10px;
+  padding-top: 10px;
+  text-align: center;
+}
+
+.favorite {
+  margin-top: 20px;
+}
+
+.voted {
+  opacity: 0.5;
+}
+
+.jumbotron {
+  background-image: url(<%= asset_path("trees.jpg") %>);
+}
