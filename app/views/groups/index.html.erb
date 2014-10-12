@@ -1,0 +1,7 @@
+<h2>Active Groups</h2>
+
+<% @groups.each do |group| %>
+  <%= link_to group.name, group_path(group) %>
+  <p><%= pluralize(group.users.count, "user") %></p>
+
+<% end %>

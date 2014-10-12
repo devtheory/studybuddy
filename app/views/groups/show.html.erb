@@ -1,0 +1,10 @@
+<h2><%= @group.name %></h2> 
+
+  <span><%= link_to "Edit group", edit_group_path, class: 'btn btn-success' %></span> <span><%= link_to "Delete group", @group, method: :delete, class: 'btn btn-danger' %></span>
+
+<p><%= @group.description %></p>
+
+<h2>Group members</h2>
+<% @group.users.each do |user| %>
+  <%= fa_icon "star" if user.memberships.where(group_id: @group.id).first.role == "admin" %> <span><%= link_to user.name, user_path(user) %></span>
+<% end %>

@@ -1,0 +1,20 @@
+<h2>Edit Group</h2>
+
+<div class="row">
+  <div class="col-md-4">
+    <%= form_for @group do |f| %>
+      <div class="form-group">
+        <%= f.label :name %>
+        <%= f.text_field :name, class: 'form-control' %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :description %>
+        <%= f.text_area :description, class: 'form-control' %>
+      </div>
+      
+      <%= f.submit "Submit Changes", class: 'btn btn-success' %>
+
+    <% end %>
+  </div>
+</div>

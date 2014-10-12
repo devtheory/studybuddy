@@ -11,13 +11,13 @@
 
     <ul class="nav nav-tabs">
       <li><%= link_to "EduKazoo", root_path %></li>
-      <li><%= link_to "Groups", about_path %></li>
-      <li><%= link_to "About", about_path %></li>
+      <li><%= link_to "Active Groups", groups_path %></li>
+      <li><%= link_to "New Group", new_group_path %></li>
 
       <div class="pull-right user-info">
         <% if current_user %>
           <%= image_tag(current_user.avatar) if current_user.avatar? %>
-          Hello, <%= link_to (current_user.name || current_user.email), edit_registration_path(current_user) %>!
+          Hello, <%= link_to (current_user.name || current_user.email), current_user %>!
           <%= link_to edit_user_registration_path, class: 'btn btn-primary btn-sm' do %>
             <span><%= fa_icon "user" %></span>
           <% end %>

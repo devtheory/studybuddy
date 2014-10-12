@@ -1,8 +1,15 @@
 class User < ActiveRecord::Base
+  has_many :memberships
+  has_many :groups, :through => :memberships
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable, :omniauthable, :omniauth_providers => [:facebook]
+
+  def role?(base_role)
+    role == base_role.to_s
+  end
 
   def self.from_omniauth(auth)
     where(auth.slice(:provider, :uid)).first_or_create do |user|

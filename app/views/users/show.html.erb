@@ -1,0 +1,37 @@
+<div class="container">
+<div class="row">
+  
+    <div class="media">
+      <% if @user.avatar? %>
+        <%= image_tag "http://graph.facebook.com/#{@user.uid}/picture?type=normal", class: 'pull-left', style: 'padding-top:10px' %>
+      <% end %>
+      <div class="media-body">
+        <h2 class="media-heading", style="padding-top:5px"><%= @user.name %></h2>
+        <small>
+          <p><%= @user.bio %></p> 
+          <%= link_to "Edit", edit_registration_path(current_user), class: 'btn btn-success' %>
+        </small>
+      </div>
+    </div>
+  
+</div>
+
+<br />
+
+<div class="row">
+  <div class="tabbable tabs-left">
+    <ul class="nav nav-tabs">
+      <li class="active"><a href="#posts" data-toggle="tab">Groups</a></li>
+      <li><a href="#comments" data-toggle="tab">Validations</a></li>
+    </ul>
+    <div class="tab-content">
+      <div class="tab-pane active" id="posts">
+        <p>render @groups</p>
+      </div>
+      <div class="tab-pane" id="comments">
+        <p> render @validations</p>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
