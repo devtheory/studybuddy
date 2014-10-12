@@ -1,0 +1,9 @@
+<h2><%= @meeting.name %></h2> <span><%= link_to "Suggest topic", new_group_meeting_question_path(@meeting, @group), class: 'btn btn-sm btn-success'%></span>
+<p ><strong>Meeting place:</strong> <%= @meeting.location %></p>
+<p ><strong>Meeting time:</strong> <%= @meeting.time %></p>
+<br />
+
+<h3>Suggested topics</h3>
+<% @meeting.questions.each do |question| %>
+  <p><%= fa_icon "circle" %> <%= question.name %></p>
+<% end %>

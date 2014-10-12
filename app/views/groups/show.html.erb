@@ -1,10 +1,71 @@
-<h2><%= @group.name %></h2> 
-
-  <span><%= link_to "Edit group", edit_group_path, class: 'btn btn-success' %></span> <span><%= link_to "Delete group", @group, method: :delete, class: 'btn btn-danger' %></span>
-
-<p><%= @group.description %></p>
-
-<h2>Group members</h2>
-<% @group.users.each do |user| %>
-  <%= fa_icon "star" if user.memberships.where(group_id: @group.id).first.role == "admin" %> <span><%= link_to user.name, user_path(user) %></span>
+<h1><%= @group.name %></h1> 
+<% hasMembership = current_user.memberships.where(group_id: @group.id).first %>
+<% if hasMembership.nil? %>
+  <% isAdmin = false %>
+<% else %>
+  <% isAdmin = hasMembership.role == "admin" %>
 <% end %>
+
+<% if isAdmin %>
+  <span><%= link_to "Edit group", edit_group_path, class: 'btn btn-sm btn-success' %></span> <span><%= link_to "Delete group", @group, method: :delete, class: 'btn btn-sm btn-danger' %></span> <span><%= link_to "Schedule meeting", new_group_meeting_path(@group), class: 'btn btn-sm btn-info' %></span>
+<% elsif hasMembership && hasMembership.role == "member" %>
+  <%= link_to "Schedule meeting", new_group_meeting_path(@group), class: 'btn btn-sm btn-info' %>
+<% elsif hasMembership && hasMembership.role == "pending" %>
+  <span>Your request for group access is being reviewed</span> <span><%= link_to "Cancel Request", deny_access_path(:group_id => @group.id, :user_id => current_user.id), class: 'btn btn-xs btn-danger' %></span>
+<% else %>
+  <%= link_to "Request group access", request_access_path(:group_id => @group.id, :user_id => current_user.id), class: 'btn btn-sm btn-info' %>
+<% end %>
+<br />
+<h3>Description</h3>
+<p><%= @group.description %></p>
+<br />
+
+<div class="row">
+  <div class="col-md-4">
+    <div class="panel panel-primary">
+      <div class="panel-heading"><h3 class="panel-title">Group members</h3></div>
+      <div class="panel-body">
+      <% @group.users.each do |user| %>
+        <% if user.memberships.where(group_id: @group.id).first.role == "admin" %> 
+          <p><%= fa_icon "star" %> <%= link_to user.name, user_path(user) %></p>
+          <hr>
+        <% elsif user.memberships.where(group_id: @group.id).first.role == "member" %>
+          <p> <%= link_to user.name, user_path(user) %></p>
+        <% end %>
+      <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-4">
+    <div class="panel panel-primary">
+      <div class="panel-heading"><h3 class="panel-title">Pending members</h3></div>
+      <div class="panel-body">
+        <% if @group.memberships.where(role: "pending").count > 0 %>
+          <% @group.users.each do |user| %>
+            <% if user.memberships.where(group_id: @group.id).first.role == "pending" %>
+            <span> <%= link_to user.name, user_path(user) %></span> <span><%= link_to "Approve", grant_access_path(:group_id => @group.id, :user_id => user.id), class: 'btn btn-xs btn-success' if current_user.memberships.where(group_id: @group.id).first.role == "admin" %></span> <span><%= link_to "Deny", deny_access_path(:group_id => @group.id, :user_id => user.id), class: 'btn btn-xs btn-danger' if current_user.memberships.where(group_id: @group.id).first.role == "admin" %></span>
+            <hr>
+            <% end %>
+          <% end %>
+          <% else %>
+          <p>There are no pending requests</p>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-8">
+    <div class="panel panel-primary">
+      <div class="panel-heading"><h3 class="panel-title">Scheduled meetings</h3></div>
+      <div class="panel-body">
+      <% @group.meetings.each do |meeting| %>
+        <p><%= link_to meeting.name, group_meeting_path(@group, meeting) %>  <%= meeting.time %></p>
+        <hr>
+      <% end %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -7,8 +7,22 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable, :omniauthable, :omniauth_providers => [:facebook]
 
-  def role?(base_role)
-    role == base_role.to_s
+  def isAdminFor(group)
+    hasMembership = current_user.memberships.where(group_id: group.id).first
+    if hasMembership.nil?
+      false
+    else
+      hasMembership.role == "admin"
+    end
+  end
+
+  def isMember(group)
+    hasMembership = current_user.memberships.where(group_id: group.id).first
+    if hasMembership.nil?
+      false
+    else
+      hasMembership.role == "none"
+    end
   end
 
   def self.from_omniauth(auth)

@@ -42,6 +42,32 @@ class GroupsController < ApplicationController
     end
   end
 
+  def request_access
+    @group = Group.find(params[:group_id])
+    @user = User.find(params[:user_id])
+    @membership = Membership.where(user_id: @user.id, group_id: @group.id).first_or_create
+    @membership.role = "pending"
+    @membership.save
+    redirect_to @group
+  end
+
+  def grant_access
+    @group = Group.find(params[:group_id])
+    @user = User.find(params[:user_id])
+    @membership = Membership.where(user_id: @user.id, group_id: @group.id).first
+    @membership.role = "member"
+    @membership.save
+    redirect_to @group
+  end
+
+  def deny_access
+    @group = Group.find(params[:group_id])
+    @user = User.find(params[:user_id])
+    @membership = Membership.where(user_id: @user.id, group_id: @group.id).first
+    @membership.destroy
+    redirect_to @group
+  end
+
   def destroy
     @group = Group.find(params[:id])
     @membership = Membership.where(user_id: current_user.id, group_id: @group.id).first

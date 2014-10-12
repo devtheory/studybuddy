@@ -2,6 +2,6 @@
 
 <% @groups.each do |group| %>
   <%= link_to group.name, group_path(group) %>
-  <p><%= pluralize(group.users.count, "user") %></p>
+  <p><%= pluralize(group.users.count, "user") %> moderated by <%= User.find(group.memberships.where(role: "admin").first.user_id).name %></p>
 
 <% end %>

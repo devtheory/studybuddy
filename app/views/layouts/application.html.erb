@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>EduKazoo</title>
+  <title>eduKazoo</title>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
@@ -11,8 +11,11 @@
 
     <ul class="nav nav-tabs">
       <li><%= link_to "EduKazoo", root_path %></li>
-      <li><%= link_to "Active Groups", groups_path %></li>
-      <li><%= link_to "New Group", new_group_path %></li>
+      <% if current_user %>
+        <li><%= link_to "Active Groups", groups_path %></li>
+        <li><%= link_to "New Group", new_group_path %></li>
+        <li><input style="margin-top:8px" placeholder="Find groups"><span ><button style="margin-bottom:2px;padding:3px"class="btn btn-default btn-xs">Go!</button></span></li>
+      <% end %>
 
       <div class="pull-right user-info">
         <% if current_user %>
